@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+
+# Workspace port registry. These are byte-identical mirrors of the files in
+# ~/Projects and they list every project, port, and staging domain across the
+# whole workspace. Useful to have locally; not something to publish in a repo
+# that Tobin owns and that anyone can read. Keep the files, don't ship them.
+MASTER-PORTS.md
+PORTS.md
+README.md

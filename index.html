@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tobin Chang</title>
+<meta name="description" content="Tobin Chang's personal site.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#faf5ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400&family=Newsreader:opsz,wght@6..72,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/manual.css">
+<style>
+  /* Placeholder-only layout. Delete this block when the real home page lands. */
+  .holding {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+    display: grid;
+    align-content: center;
+    gap: 1.5rem;
+    max-width: 34rem;
+    margin-inline: auto;
+    padding: 4rem var(--gutter);
+  }
+  .holding__mark {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin: 0;
+  }
+  .holding h1 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(3rem, 13vw, 6rem);
+    line-height: .9;
+    letter-spacing: -.04em;
+    margin: 0;
+  }
+  .holding p {
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 26rem;
+  }
+  .holding__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: .5rem;
+    font-family: var(--mono);
+    font-size: .8rem;
+    letter-spacing: .03em;
+  }
+  .holding__links a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--signal);
+    padding-bottom: .15rem;
+    transition: color .15s;
+  }
+  .holding__links a:hover { color: var(--signal); }
+  .holding__rule { height: 1px; background: var(--rule); margin-block: .5rem; }
+</style>
+</head>
+<body>
+
+<main class="holding">
+  <p class="holding__mark">tobinchang.com</p>
+
+  <h1>Tobin<br>Chang</h1>
+
+  <div class="holding__rule"></div>
+
+  <p>
+    This is a placeholder. The real site isn't built yet — that's the fun part,
+    and it's Tobin's to build.
+  </p>
+
+  <div class="holding__links">
+    <a href="/howto/">Read the operator's manual →</a>
+  </div>
+</main>
+
+</body>
+</html>
