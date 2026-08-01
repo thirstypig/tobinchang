@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Operator's Manual — how to run tobinchang.com yourself</title>
-<meta name="description" content="A step-by-step manual for running your own website with an AI coding helper and GitHub. Setup, everyday edits, making new pages, and a pack of prompts you can copy.">
+<meta name="description" content="A step-by-step manual for running your own website with an AI helper and GitHub. Setup, everyday edits, making new pages, and a pack of prompts you can copy.">
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#faf5ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
+<!-- Runs before anything is drawn, so you never see a flash of the wrong colours. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600&display=swap" rel="stylesheet">
@@ -17,6 +19,12 @@
 
 <a class="skip" href="#start">Skip to the manual</a>
 
+<button class="theme" type="button" aria-label="Switch between light and dark">
+  <span class="theme__dot" aria-hidden="true"></span>
+  <span class="theme__off">Light</span>
+  <span class="theme__on">Dark</span>
+</button>
+
 <div class="wrap">
 
 <!-- ===================== MASTHEAD ===================== -->
@@ -25,8 +33,7 @@
   <h1>How to run <em>your own</em> website.</h1>
   <p class="masthead__standfirst">
     Everything on this site — every word, every page, every colour — lives in a
-    folder that belongs to you. This manual shows you how to change it without
-    needing to ask anyone.
+    folder that belongs to you. This manual shows you how to change it.
   </p>
   <p class="masthead__meta">
     You do not need to know how to code.<br>
@@ -65,37 +72,42 @@
 
   <p class="lede">
     Before you change anything, it helps to know what you're changing. The whole
-    system is only three parts.
+    thing is only three parts.
   </p>
 
   <ul class="flow">
     <li>
       <b>Your computer</b>
-      <span>A folder called <code>tobinchang</code>. Ordinary files. This is your workbench — mess it up freely.</span>
+      <span>A folder called <code>tobinchang</code>. Just ordinary files. This is your workbench — mess it up freely.</span>
     </li>
     <li>
       <b>GitHub</b>
-      <span>The copy that counts. It keeps every version you've ever saved, so nothing is ever really lost.</span>
+      <span>A free website that stores your folder online. It keeps every version you've ever saved.</span>
     </li>
     <li>
       <b>tobinchang.com</b>
-      <span>What the world sees. GitHub rebuilds it automatically about a minute after you send changes.</span>
+      <span>What other people see. GitHub rebuilds it about a minute after you send it changes.</span>
     </li>
   </ul>
 
   <p>
-    You edit files in the folder on your computer. You <strong>push</strong> them
-    to GitHub. GitHub puts them on the internet. That's it — that's the entire
-    machine. Everything else in this manual is just detail.
+    So: you change files in the folder on your computer. You send those files to
+    GitHub. GitHub puts them on the internet.
+  </p>
+
+  <p>
+    Sending your files to GitHub is called <strong>pushing</strong>. That's the
+    only bit of jargon in this paragraph, and you'll see it a lot. It just means
+    "send it up."
   </p>
 
   <div class="note">
     <span class="note__tag">The one rule worth memorising</span>
     <p>
       A folder with a file called <code>index.html</code> inside it becomes a page
-      on your site. The folder <code>howto/</code> is why this page lives at
-      <strong>tobinchang.com/howto</strong>. Make a folder called
-      <code>music/</code> with an <code>index.html</code> inside, and you have
+      on your site. There's a folder called <code>howto</code> — that's why this
+      page is at <strong>tobinchang.com/howto</strong>. Make a folder called
+      <code>music</code> with an <code>index.html</code> inside, and you've got
       <strong>tobinchang.com/music</strong>.
     </p>
   </div>
@@ -109,26 +121,37 @@
   </div>
 
   <p>
-    GitHub is where your website lives. It's free, and you only do this once.
+    GitHub is the free service that stores your website and puts it online. You
+    only do this once.
   </p>
 
   <ol class="steps">
     <li>Go to <a href="https://github.com/signup">github.com/signup</a>.</li>
     <li>
-      <strong>Choose your username carefully.</strong> It becomes part of web
-      addresses, it's public, and changing it later breaks links. Pick something
-      you'd be happy for a stranger — or a future employer — to read.
+      <strong>Choose your username carefully.</strong> It shows up in web
+      addresses, anyone can see it, and changing it later breaks links. Pick
+      something you'd be happy for a stranger — or someone hiring you one day —
+      to read.
     </li>
-    <li>Use an email you'll still have in five years.</li>
-    <li>Turn on two-factor authentication when it offers. It's the difference between an account you own and an account you used to own.</li>
+    <li>Use an email address you'll still have in five years.</li>
+    <li>
+      <strong>Turn on two-factor authentication</strong> when it offers. That
+      means logging in needs your password <em>and</em> a code from your phone.
+      It's the difference between an account you own and an account you used to
+      own.
+    </li>
+    <li>
+      Tell Uncle Jimmy your username. He'll give you permission to make changes
+      to the site — without that, the last step of every edit won't work.
+    </li>
   </ol>
 
   <div class="note note--warn">
     <span class="note__tag">Careful</span>
     <p>
-      Everything you push to GitHub is public by default, and search engines read
-      it. Treat it like a poster on a wall, not a diary. Never put your home
-      address, your phone number, your school schedule, or a password in a file.
+      Anything you send to GitHub can be read by anyone, and Google will find it.
+      Treat it like a poster on a wall, not a diary. Never put your home address,
+      your phone number, your school timetable, or a password into a file.
     </p>
   </div>
 </section>
@@ -142,38 +165,46 @@
 
   <p>
     The Terminal is a window where you type instructions to your computer instead
-    of clicking them. It looks intimidating and isn't. You'll use maybe five
-    commands total, and your AI helper will handle the rest.
+    of clicking things. It looks intimidating. It isn't. You'll use about five
+    instructions total, and your AI helper does everything else.
   </p>
 
   <ol class="steps">
-    <li>Press <kbd>⌘</kbd> + <kbd>Space</kbd>.</li>
+    <li>Hold <kbd>⌘</kbd> and press <kbd>Space</kbd>.</li>
     <li>Type <code>Terminal</code>.</li>
     <li>Press <kbd>Return</kbd>.</li>
   </ol>
 
   <p>
     A window opens with a blinking cursor. When this manual shows a black box with
-    an orange <code>$</code>, type what comes after it and press <kbd>Return</kbd>.
-    Don't type the <code>$</code> itself.
+    an orange <code>$</code> in front, type the part <em>after</em> the
+    <code>$</code> and press <kbd>Return</kbd>. Don't type the <code>$</code>
+    itself — it's just there to show you where the instruction starts.
   </p>
 
-  <p>Try one now — this just asks the computer where you are:</p>
+  <p>Try one. This one asks "which folder am I in right now?"</p>
 
   <pre class="cmd">pwd</pre>
 
   <p>
-    You'll need one more thing installed, called Node. Check whether you already
+    It'll print something like <code>/Users/tobin</code>. That's your answer.
+    Nothing was changed, nothing broke. That's most of what the Terminal is like.
+  </p>
+
+  <h3>One thing to install first</h3>
+
+  <p>
+    Your AI helper needs a free program called Node. Check whether you already
     have it:
   </p>
 
   <pre class="cmd">node --version</pre>
 
   <p>
-    If that prints a number like <code>v22.19.0</code>, you're set. If it says
-    "command not found", go to <a href="https://nodejs.org">nodejs.org</a>,
-    download the version marked <strong>LTS</strong>, and run the installer like
-    any other app.
+    If that prints a number like <code>v22.19.0</code>, you're set — skip ahead.
+    If it says <em>command not found</em>, go to
+    <a href="https://nodejs.org">nodejs.org</a>, download the button marked
+    <strong>LTS</strong>, and install it like any other app.
   </p>
 </section>
 
@@ -185,40 +216,41 @@
   </div>
 
   <p>
-    This is the part that makes the whole thing possible. Your helper reads your
-    files, writes the code, and saves your work to GitHub — you describe what you
-    want in plain English.
+    This is the part that makes everything else possible. Your helper reads your
+    files, writes the code, and saves your work — you just describe what you want
+    in normal English.
   </p>
 
-  <p>Pick <strong>one</strong>. They do the same job, and you can switch later.</p>
+  <p>Pick <strong>one</strong> of these. They do the same job. You can switch later.</p>
 
   <ul class="choice">
     <li>
       <h4>Claude Code</h4>
-      <p class="who">by Anthropic</p>
+      <p class="who">made by Anthropic</p>
       <pre class="cmd">npm install -g @anthropic-ai/claude-code</pre>
-      <p>Then start it any time by typing <code>claude</code>.</p>
+      <p>Once it's installed, you start it by typing <code>claude</code>.</p>
     </li>
     <li>
       <h4>Codex</h4>
-      <p class="who">by OpenAI</p>
+      <p class="who">made by OpenAI</p>
       <pre class="cmd">npm install -g @openai/codex</pre>
-      <p>Then start it any time by typing <code>codex</code>.</p>
+      <p>Once it's installed, you start it by typing <code>codex</code>.</p>
     </li>
   </ul>
 
   <p>
-    The first time you run it, it'll ask you to sign in through your browser.
-    Follow the prompts. This also happens only once.
+    Installing takes a minute or two and prints a lot of text. That's normal —
+    you don't need to read it. The first time you start it, it'll open your
+    browser and ask you to sign in. That also only happens once.
   </p>
 
   <div class="note">
     <span class="note__tag">If the install fails</span>
     <p>
-      An error mentioning <code>EACCES</code> or "permission denied" means your
-      computer is protecting a folder. Don't paste in a fix you found online.
-      Copy the whole error message, and ask for help — that's what
-      Station&nbsp;10 is for.
+      If you see an error with the word <code>EACCES</code> or "permission
+      denied", your computer is protecting a folder. Don't paste in a fix you
+      found online — some of those quietly make things worse. Copy the whole
+      error and ask for help. Station&nbsp;10 covers how.
     </p>
   </div>
 </section>
@@ -231,32 +263,39 @@
   </div>
 
   <p>
-    <em>Cloning</em> means downloading your own copy of the website to work on.
-    Run these one line at a time.
+    Right now your website only exists on GitHub. You need your own copy on your
+    computer to work on. Downloading that copy is called <strong>cloning</strong>.
   </p>
 
-  <p>First, move to your Documents folder:</p>
+  <p>Run these one line at a time, pressing <kbd>Return</kbd> after each.</p>
+
+  <p>
+    First, move into your Documents folder. <code>cd</code> means "change
+    directory", and directory is just another word for folder. The
+    <code>~</code> symbol means your own home folder.
+  </p>
   <pre class="cmd">cd ~/Documents</pre>
 
-  <p>Then download the site:</p>
+  <p>Now download the website:</p>
   <pre class="cmd">git clone https://github.com/thirstypig/tobinchang.git</pre>
 
-  <p>Then step into the folder you just downloaded:</p>
+  <p>That creates a folder called <code>tobinchang</code>. Step into it:</p>
   <pre class="cmd">cd tobinchang</pre>
 
-  <p>Now start your helper:</p>
+  <p>And start your helper:</p>
   <pre class="cmd">claude</pre>
 
   <p>
     You're in. Your helper can now see every file on your website, and you can
-    start talking to it.
+    start talking to it like a person.
   </p>
 
   <div class="note">
     <span class="note__tag">Every time after this</span>
     <p>
-      Opening the Terminal and typing <code>cd ~/Documents/tobinchang</code> then
-      <code>claude</code> is the whole startup routine. Two lines, forever.
+      You never have to clone again. From now on, starting work is two lines:
+      <code>cd ~/Documents/tobinchang</code> and then <code>claude</code>.
+      That's it, forever.
     </p>
   </div>
 </section>
@@ -269,49 +308,63 @@
   </div>
 
   <p class="lede">
-    Every change you'll ever make follows the same three beats. Learn this rhythm
-    and you never have to memorise a command again.
+    Every change you will ever make follows the same three beats. Learn this
+    rhythm and you never have to memorise a command again.
   </p>
 
   <ul class="flow">
     <li><b>1 · Ask</b><span>Tell your helper what you want, in normal words.</span></li>
-    <li><b>2 · Look</b><span>Open the site on your computer and check it with your own eyes.</span></li>
-    <li><b>3 · Ship</b><span>Ask your helper to save and push it. A minute later it's live.</span></li>
+    <li><b>2 · Look</b><span>Open the site on your own computer and check it with your eyes.</span></li>
+    <li><b>3 · Ship</b><span>Ask your helper to send it to GitHub. A minute later it's live.</span></li>
   </ul>
 
   <h3>Looking before you ship</h3>
 
   <p>
-    Never push something you haven't looked at. To see your site on your own
-    computer, open a <em>second</em> Terminal window and run:
+    Never put something on the internet you haven't looked at. To see your site
+    privately on your own computer, open a <em>second</em> Terminal window and
+    run this:
   </p>
 
   <pre class="cmd">cd ~/Documents/tobinchang &amp;&amp; python3 -m http.server 3130</pre>
 
   <p>
-    Then open <a href="http://localhost:3130">localhost:3130</a> in your browser.
-    That's your site, running privately on your machine. Refresh the page after
-    each change. Press <kbd>Ctrl</kbd> + <kbd>C</kbd> in that window to stop it.
+    That's two instructions joined together — the <code>&amp;&amp;</code> just
+    means "and then". It moves into your folder, then starts a little private
+    web server.
+  </p>
+
+  <p>
+    Now open <a href="http://localhost:3130">localhost:3130</a> in your browser.
+    That's your website, running only on your machine, where nobody else can see
+    it. Refresh the page after each change. When you're done, click that Terminal
+    window and press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop it.
   </p>
 
   <h3>Shipping it</h3>
 
   <p>
-    You don't need to learn Git commands. Just ask, in the same window where your
-    helper is running:
+    You don't need to learn any of the saving commands. Just ask, in the window
+    where your helper is running:
   </p>
 
   <ul class="prompts">
     <li class="prompt">
       <span class="prompt__label">Ship it</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Commit these changes with a clear message and push them to GitHub.</p>
+      <p class="prompt__text">Save these changes with a clear message and send them to GitHub.</p>
     </li>
   </ul>
 
   <p>
-    Wait about a minute, then load <strong>tobinchang.com</strong> in your browser.
-    Your change is on the internet.
+    Saving a snapshot like that is called making a <strong>commit</strong>.
+    Sending it up is the <strong>push</strong> from Station&nbsp;00. Your helper
+    does both.
+  </p>
+
+  <p>
+    Wait about a minute, then open <strong>tobinchang.com</strong>. Your change is
+    on the internet.
   </p>
 </section>
 
@@ -323,29 +376,29 @@
   </div>
 
   <p>
-    Let's do the smallest possible real edit, start to finish, so you've done the
-    whole loop once.
+    Let's do the smallest real edit there is, start to finish, so you've been
+    round the whole loop once.
   </p>
 
   <ol class="steps">
-    <li>Open the Terminal and run <code>cd ~/Documents/tobinchang</code>, then <code>claude</code>.</li>
-    <li>Paste the prompt below and press <kbd>Return</kbd>.</li>
-    <li>Read what it says it's going to do. If it looks right, let it go ahead.</li>
+    <li>Open the Terminal. Type <code>cd ~/Documents/tobinchang</code>, then <code>claude</code>.</li>
+    <li>Copy the prompt below, paste it in, and press <kbd>Return</kbd>.</li>
+    <li>Read what it says it's about to do. If it looks right, let it go ahead.</li>
     <li>Check it at <a href="http://localhost:3130">localhost:3130</a>.</li>
-    <li>Ask it to commit and push.</li>
+    <li>Ask it to save and send.</li>
   </ol>
 
   <ul class="prompts">
     <li class="prompt">
       <span class="prompt__label">Your first edit</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Open the home page and change the headline to say "Hi, I'm Tobin." Keep the existing fonts and colours exactly as they are. Show me the change before you save it.</p>
+      <p class="prompt__text">Open the home page and change the big heading to say "Hi, I'm Tobin." Keep the fonts and colours exactly as they are. Show me the change before you save it.</p>
     </li>
   </ul>
 
   <p>
-    That's the entire job. Everything else you'll ever do here is a bigger version
-    of those five steps.
+    That's the whole job. Everything else you'll ever do on this site is a bigger
+    version of those five steps.
   </p>
 </section>
 
@@ -361,7 +414,7 @@
     <code>index.html</code> inside it becomes a page.</strong>
   </p>
 
-  <p>So the structure of your site looks like this:</p>
+  <p>Here's how that looks in your actual folder:</p>
 
   <pre class="cmd cmd--plain">tobinchang/
 ├── index.html          <span class="c">→ tobinchang.com</span>
@@ -370,10 +423,10 @@
 ├── music/
 │   └── index.html      <span class="c">→ tobinchang.com/music</span>
 └── assets/
-    └── manual.css      <span class="c">→ the styling</span></pre>
+    └── manual.css      <span class="c">→ the file that controls how it all looks</span></pre>
 
   <p>
-    You don't have to make those folders by hand. Describe the page you want and
+    You don't have to make those folders yourself. Describe the page you want and
     let your helper build it:
   </p>
 
@@ -381,12 +434,12 @@
     <li class="prompt">
       <span class="prompt__label">New page</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Make a new page at /music where I can write about songs I like. Use the same fonts, colours and styling as the rest of the site so it matches. Put three example entries on it so I can see how it looks, and add a link to it from the home page.</p>
+      <p class="prompt__text">Make a new page at /music where I can write about songs I like. Use the same fonts, colours and styling as the rest of the site so it matches. Put three made-up entries on it so I can see how it looks, and add a link to it from the home page.</p>
     </li>
     <li class="prompt">
       <span class="prompt__label">New page — projects</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Make a new page at /projects that lists things I've built. Each one should have a title, a short description, and a photo. Match the style of the rest of the site, and use grey boxes where the photos will go until I have real ones.</p>
+      <p class="prompt__text">Make a new page at /projects that lists things I've built. Each one needs a title, a short description, and a photo. Match the style of the rest of the site, and use grey boxes where the photos will go until I have real ones.</p>
     </li>
   </ul>
 
@@ -394,8 +447,8 @@
     <span class="note__tag">Why this matters</span>
     <p>
       Notice both prompts say <em>"match the style of the rest of the site."</em>
-      Without that, you'll get a page that works but looks like it belongs to
-      somebody else. Say it every time.
+      Leave that out and you'll get a page that works but looks like it belongs to
+      someone else. Say it every time.
     </p>
   </div>
 </section>
@@ -408,15 +461,15 @@
   </div>
 
   <p class="lede">
-    A prompt is just an instruction. Weak prompts get weak results — not because
-    the helper is dumb, but because you left it guessing.
+    A prompt is just an instruction you type. Vague prompts get vague results —
+    not because the helper is stupid, but because you left it guessing.
   </p>
 
   <h3>The four ingredients</h3>
 
   <ul>
     <li><strong>What</strong> — the thing you want changed.</li>
-    <li><strong>Where</strong> — which page or which part of the page.</li>
+    <li><strong>Where</strong> — which page, or which part of the page.</li>
     <li><strong>How it should feel</strong> — calm, loud, funny, serious, simple.</li>
     <li><strong>What not to touch</strong> — the stuff you already like.</li>
   </ul>
@@ -425,22 +478,22 @@
 
   <ul class="prompts">
     <li class="prompt" style="border-left-color: var(--ink-faint)">
-      <span class="prompt__label">Weak — too vague to act on</span>
+      <span class="prompt__label">Weak — nothing here to act on</span>
       <p class="prompt__text">make the site better</p>
     </li>
     <li class="prompt">
-      <span class="prompt__label">Strong — leaves nothing to guess</span>
+      <span class="prompt__label">Strong — nothing left to guess</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">On the home page, the text under my name is hard to read on a phone. Make it bigger and add more space between the lines. Don't change the colours or the headline.</p>
+      <p class="prompt__text">On the home page, the text under my name is hard to read on a phone. Make it bigger and put more space between the lines. Don't change the colours or the heading.</p>
     </li>
   </ul>
 
   <h3>Three habits worth having</h3>
 
   <ul>
-    <li><strong>Ask for one thing at a time.</strong> Five changes in one prompt means five chances for something to go sideways at once.</li>
-    <li><strong>Say "show me first" when you're unsure.</strong> You can always approve after you've read it.</li>
-    <li><strong>If the result is wrong, say what's wrong — don't start over.</strong> "Almost, but the spacing is too tight" gets you there faster than rewriting the prompt from scratch.</li>
+    <li><strong>Ask for one thing at a time.</strong> Five changes in one prompt means five things that can go wrong at once, and you won't know which one did.</li>
+    <li><strong>Say "show me first" when you're unsure.</strong> You can always approve it after you've read it.</li>
+    <li><strong>If it comes out wrong, say what's wrong — don't start over.</strong> "Close, but the spacing is too tight" gets you there much faster than rewriting the whole prompt.</li>
   </ul>
 </section>
 
@@ -452,8 +505,8 @@
   </div>
 
   <p>
-    Copy these straight into your helper. Change the words in them to suit what
-    you actually want — they're starting points, not spells.
+    Copy these straight into your helper. Change the words to suit what you
+    actually want — they're starting points, not magic spells.
   </p>
 
   <h3>Everyday edits</h3>
@@ -467,7 +520,7 @@
     <li class="prompt">
       <span class="prompt__label">Add a photo</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">I put a photo called me.jpg in the assets folder. Add it to the home page under the headline, make it round, and keep it a reasonable size on phones.</p>
+      <p class="prompt__text">I put a photo called me.jpg in the assets folder. Add it to the home page under the heading, make it round, and keep it a sensible size on phones.</p>
     </li>
     <li class="prompt">
       <span class="prompt__label">Add a link</span>
@@ -482,7 +535,7 @@
     <li class="prompt">
       <span class="prompt__label">Fix it on phones</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Check every page on a phone-sized screen and fix anything that overflows, overlaps, or is too small to read. Don't redesign anything — just make what's there work properly.</p>
+      <p class="prompt__text">Check every page on a phone-sized screen and fix anything that runs off the edge, overlaps, or is too small to read. Don't redesign anything — just make what's already there work properly.</p>
     </li>
     <li class="prompt">
       <span class="prompt__label">Try a new look</span>
@@ -490,9 +543,9 @@
       <p class="prompt__text">Show me three different colour schemes for the site. Keep the layout and fonts the same, only change the colours. Describe each one before you build it so I can pick.</p>
     </li>
     <li class="prompt">
-      <span class="prompt__label">Slow down</span>
+      <span class="prompt__label">Give it room</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">The home page feels cramped. Add more space between the sections so it feels calmer, without making the text smaller.</p>
+      <p class="prompt__text">The home page feels cramped. Put more space between the sections so it feels calmer, without making the text smaller.</p>
     </li>
   </ul>
 
@@ -502,17 +555,17 @@
     <li class="prompt">
       <span class="prompt__label">Get your bearings</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Give me a tour of this website. What files are here, what does each one do, and which one should I edit if I want to change the home page?</p>
+      <p class="prompt__text">Give me a tour of this website. What files are here, what does each one do, and which one do I edit if I want to change the home page?</p>
     </li>
     <li class="prompt">
       <span class="prompt__label">Explain it to me</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Explain what you just changed and why, like I'm new to this. Point out the part I'd need to edit if I wanted to tweak it myself later.</p>
+      <p class="prompt__text">Explain what you just changed and why, like I'm new to this. Point out the bit I'd need to edit if I wanted to tweak it myself later.</p>
     </li>
     <li class="prompt">
-      <span class="prompt__label">What changed?</span>
+      <span class="prompt__label">What have I changed?</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">What have I changed since the last time I pushed to GitHub? List it in plain English, not code.</p>
+      <p class="prompt__text">What have I changed since the last time I sent anything to GitHub? List it in plain English, not code.</p>
     </li>
   </ul>
 
@@ -522,15 +575,15 @@
     <li class="prompt">
       <span class="prompt__label">Ship it</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Commit these changes with a clear message and push them to GitHub.</p>
+      <p class="prompt__text">Save these changes with a clear message and send them to GitHub.</p>
     </li>
     <li class="prompt">
       <span class="prompt__label">Check before shipping</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Before I push this — check every page for broken links, missing images, and typos. Tell me what you find and don't fix anything yet.</p>
+      <p class="prompt__text">Before I send this — check every page for broken links, missing images, and spelling mistakes. Tell me what you find and don't fix anything yet.</p>
     </li>
     <li class="prompt">
-      <span class="prompt__label">Privacy sweep</span>
+      <span class="prompt__label">Privacy check</span>
       <button class="prompt__copy" type="button">Copy</button>
       <p class="prompt__text">Look through the whole site for anything personal I shouldn't be publishing — my address, phone number, school name, email, or anything a stranger could use to find me. List anything you find.</p>
     </li>
@@ -545,20 +598,21 @@
   </div>
 
   <p class="lede">
-    It will break. That's normal, and it's not a sign you're doing it wrong —
+    It will break. That's normal, and it isn't a sign you're doing it wrong —
     it's the actual job.
   </p>
 
   <p>
-    The thing worth knowing: <strong>nothing you do here is permanent.</strong>
-    GitHub keeps every version you've ever saved. Any mistake can be walked back.
+    Here's the thing worth knowing: <strong>nothing you do here is
+    permanent.</strong> GitHub keeps every version you've ever saved, so any
+    mistake can be undone.
   </p>
 
   <ul class="prompts">
     <li class="prompt">
-      <span class="prompt__label">Undo everything since the last save</span>
+      <span class="prompt__label">Undo everything since my last save</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">Undo all the changes I've made since my last commit and put the files back how they were. Tell me exactly what you're about to throw away first.</p>
+      <p class="prompt__text">Undo all the changes I've made since my last save and put the files back how they were. Tell me exactly what you're about to throw away first.</p>
     </li>
     <li class="prompt">
       <span class="prompt__label">Go back one step</span>
@@ -566,24 +620,27 @@
       <p class="prompt__text">My last change broke the site. Show me what the previous version looked like and put it back.</p>
     </li>
     <li class="prompt">
-      <span class="prompt__label">Decode an error</span>
+      <span class="prompt__label">Explain an error</span>
       <button class="prompt__copy" type="button">Copy</button>
       <p class="prompt__text">I got this error and I don't understand it. Explain what it means in plain English, then tell me how to fix it: [paste the whole error here]</p>
     </li>
     <li class="prompt">
       <span class="prompt__label">The site didn't update</span>
       <button class="prompt__copy" type="button">Copy</button>
-      <p class="prompt__text">I pushed my changes but tobinchang.com still shows the old version. Check whether the push actually worked and whether the deploy succeeded, and tell me what went wrong.</p>
+      <p class="prompt__text">I sent my changes but tobinchang.com still shows the old version. Check whether it actually sent and whether the site rebuilt, and tell me what went wrong.</p>
     </li>
   </ul>
 
   <div class="note">
     <span class="note__tag">When you're properly stuck</span>
     <p>
-      Copy the <em>entire</em> error — every line, not just the part that looks
-      important — and paste it in. Half an error message is a guessing game.
-      If it's still stuck after a couple of tries, stop and ask Uncle James.
-      Nobody gets points for wrestling it alone.
+      Copy the <em>whole</em> error — every line, not just the bit that looks
+      important — and paste it in. Half an error message turns it into a guessing
+      game.
+    </p>
+    <p>
+      If it's still stuck after a couple of tries, stop and ask Uncle Jimmy.
+      Nobody gets extra points for wrestling with it alone.
     </p>
   </div>
 </section>
@@ -600,33 +657,33 @@
   <ul>
     <li>
       <strong>The internet is permanent.</strong> Once something is published,
-      assume a copy exists somewhere forever — even after you delete it. Post
-      accordingly.
+      assume a copy of it exists somewhere forever — even after you delete it.
+      Post accordingly.
     </li>
     <li>
       <strong>No personal details.</strong> Your address, phone number, school,
       birthday, and daily schedule don't belong on a public page. A first name and
-      a general area is plenty.
+      a rough location is plenty.
     </li>
     <li>
-      <strong>Never paste a password or a key.</strong> Not into a file, not into
-      a chat with your helper, not anywhere. If something asks you to, that's your
-      signal to stop and ask.
+      <strong>Never type a password or a key into a file.</strong> Not into your
+      site, not into a chat with your helper, not anywhere. If something asks you
+      to, that's your signal to stop and ask.
     </li>
     <li>
-      <strong>Read before you say yes.</strong> Your helper will ask permission
-      before it does anything real. Actually read what it's proposing — that
-      pause is your safety net, and skipping it is the one habit that gets people
-      into trouble.
+      <strong>Read before you say yes.</strong> Your helper asks permission before
+      it does anything real. Actually read what it's proposing. That pause is your
+      safety net, and skipping it is the one habit that gets people into trouble.
     </li>
     <li>
       <strong>Other people's photos need permission.</strong> Friends, family,
-      anyone. Ask first. Same for music, art, and writing that isn't yours.
+      anyone. Ask first. Same goes for music, art, and writing that isn't yours.
     </li>
     <li>
-      <strong>If something feels off, stop.</strong> A weird pop-up, an unexpected
-      request to sign in, an email about your account you weren't expecting.
-      Close it and ask. Being wrong costs nothing; being right matters a lot.
+      <strong>If something feels off, stop.</strong> A strange pop-up, an
+      unexpected request to sign in, an email about your account you weren't
+      expecting. Close it and ask. Being wrong costs you nothing; being right
+      matters a lot.
     </li>
   </ul>
 </section>
@@ -641,17 +698,17 @@
   <p>Words people will use around you. None of them are as complicated as they sound.</p>
 
   <dl class="glossary">
-    <div><dt>repo</dt><dd>Short for repository. The folder that holds your whole website, including its history.</dd></div>
-    <div><dt>clone</dt><dd>Download your own working copy of the repo onto your computer.</dd></div>
+    <div><dt>repo</dt><dd>Short for repository. The folder holding your whole website, including its history.</dd></div>
+    <div><dt>clone</dt><dd>Download your own copy of the repo onto your computer.</dd></div>
     <div><dt>commit</dt><dd>Save a snapshot of your changes, with a note about what you did. Like a checkpoint in a game.</dd></div>
-    <div><dt>push</dt><dd>Send your commits up to GitHub. This is the step that puts things on the internet.</dd></div>
-    <div><dt>pull</dt><dd>Bring down changes someone else made, so your copy is current.</dd></div>
+    <div><dt>push</dt><dd>Send your saved snapshots up to GitHub. This is the step that puts things on the internet.</dd></div>
+    <div><dt>pull</dt><dd>Bring down changes someone else made, so your copy is up to date.</dd></div>
     <div><dt>branch</dt><dd>A side copy where you can try something risky without touching the real site.</dd></div>
     <div><dt>deploy</dt><dd>The automatic process that turns your files into the live website after you push.</dd></div>
-    <div><dt>localhost</dt><dd>Your own computer, pretending to be a web server, so you can preview privately.</dd></div>
-    <div><dt>terminal</dt><dd>The window where you type commands instead of clicking buttons.</dd></div>
+    <div><dt>localhost</dt><dd>Your own computer pretending to be a web server, so you can preview privately.</dd></div>
+    <div><dt>terminal</dt><dd>The window where you type instructions instead of clicking buttons.</dd></div>
     <div><dt>prompt</dt><dd>What you type to your AI helper. An instruction in plain English.</dd></div>
-    <div><dt>HTML</dt><dd>The file format that holds a page's words and structure.</dd></div>
+    <div><dt>HTML</dt><dd>The kind of file that holds a page's words and structure.</dd></div>
     <div><dt>CSS</dt><dd>The file that decides how it all looks — colours, fonts, spacing.</dd></div>
   </dl>
 </section>
@@ -662,7 +719,7 @@
 <footer class="colophon">
   <p>
     <strong>tobinchang.com</strong> · operator's manual<br>
-    Written for Tobin. Maintained by whoever is brave enough to edit it — which is now you.<br>
+    Written for Tobin. Maintained by whoever's brave enough to edit it — which is now you.<br>
     <a href="/">← back to the front page</a>
   </p>
 </footer>
@@ -671,9 +728,10 @@
 
 <div class="sr-only" role="status" aria-live="polite" id="copy-status"></div>
 
+<script src="/assets/theme.js"></script>
 <script>
-// Copy-to-clipboard for every prompt card. Progressive: cards without a button
-// (the "weak prompt" example) are simply skipped.
+// Copy-to-clipboard for every prompt card. Cards without a button (the "weak
+// prompt" example) are simply skipped.
 document.querySelectorAll('.prompt__copy').forEach(function (btn) {
   btn.addEventListener('click', async function () {
     var text = btn.closest('.prompt').querySelector('.prompt__text').textContent.trim();

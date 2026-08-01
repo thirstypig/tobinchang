@@ -37,8 +37,15 @@
                  0 8px 24px -12px rgba(23, 21, 15, .18);
 }
 
+/* The dark palette is written out twice on purpose.
+   - The first copy runs when your computer is set to dark mode, unless the
+     reader has pressed the toggle and asked for light.
+   - The second copy runs when the reader presses the toggle and asks for dark.
+   CSS can't share one block between a media query and an attribute, so the
+   values are repeated. If you change a colour, change it in both places. */
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper:        #14130f;
     --paper-raised: #1d1b16;
     --paper-sunk:   #0e0d0a;
@@ -55,6 +62,24 @@
     --shadow-card: 0 1px 2px rgba(0, 0, 0, .4),
                    0 8px 24px -12px rgba(0, 0, 0, .7);
   }
+}
+
+:root[data-theme="dark"] {
+  --paper:        #14130f;
+  --paper-raised: #1d1b16;
+  --paper-sunk:   #0e0d0a;
+  --ink:          #f4efe2;
+  --ink-soft:     #c2baa8;
+  --ink-faint:    #8b8271;
+  --rule:         #35312a;
+
+  --signal:       #ff7043;
+  --signal-wash:  #2c1a12;
+  --deep:         #7fb5ac;
+  --deep-wash:    #14211f;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, .4),
+                 0 8px 24px -12px rgba(0, 0, 0, .7);
 }
 
 /* --- 2. Reset & base ----------------------------------------------------- */
@@ -95,8 +120,10 @@ body::before {
 }
 
 @media (prefers-color-scheme: dark) {
-  body::before { mix-blend-mode: screen; opacity: .22; }
+  :root:not([data-theme="light"]) body::before { mix-blend-mode: screen; opacity: .22; }
 }
+
+:root[data-theme="dark"] body::before { mix-blend-mode: screen; opacity: .22; }
 
 img { max-width: 100%; height: auto; }
 
@@ -123,6 +150,57 @@ img { max-width: 100%; height: auto; }
   z-index: 99;
 }
 .skip:focus { left: var(--gutter); top: 1rem; }
+
+/* --- Theme toggle -------------------------------------------------------- */
+
+.theme {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: var(--paper-raised);
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  padding: .45rem .8rem;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: color .15s, border-color .15s;
+}
+
+.theme:hover,
+.theme:focus-visible {
+  color: var(--signal);
+  border-color: var(--signal);
+}
+
+.theme__dot {
+  width: .55rem;
+  height: .55rem;
+  border-radius: 50%;
+  background: var(--signal);
+  flex: none;
+}
+
+/* Swap the label depending on which theme is active. Both labels live in the
+   markup; CSS shows exactly one, so it still reads correctly with no JS. */
+.theme__on  { display: none; }
+:root[data-theme="dark"] .theme__on  { display: inline; }
+:root[data-theme="dark"] .theme__off { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme__on  { display: inline; }
+  :root:not([data-theme="light"]) .theme__off { display: none; }
+}
+
+@media print { .theme { display: none; } }
 
 /* --- 4. Masthead --------------------------------------------------------- */
 
@@ -465,8 +543,10 @@ kbd {
 }
 
 @media (prefers-color-scheme: dark) {
-  .prompt__copy[data-copied="true"] { color: #14130f; }
+  :root:not([data-theme="light"]) .prompt__copy[data-copied="true"] { color: #14130f; }
 }
+
+:root[data-theme="dark"] .prompt__copy[data-copied="true"] { color: #14130f; }
 
 /* --- 10. Notes ----------------------------------------------------------- */
 

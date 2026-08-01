@@ -8,22 +8,22 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#faf5ea" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14130f" media="(prefers-color-scheme: dark)">
+<!-- Runs before anything is drawn, so you never see a flash of the wrong colours. -->
+<script>(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400&family=Newsreader:opsz,wght@6..72,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/manual.css">
 <style>
   /* Placeholder-only layout. Delete this block when the real home page lands. */
   .holding {
     position: relative;
     z-index: 1;
-    min-height: 100svh;
     display: grid;
-    align-content: center;
     gap: 1.5rem;
-    max-width: 34rem;
+    max-width: 38rem;
     margin-inline: auto;
-    padding: 4rem var(--gutter);
+    padding: clamp(3.5rem, 12vw, 7rem) var(--gutter) 3rem;
   }
   .holding__mark {
     font-family: var(--mono);
@@ -41,18 +41,73 @@
     letter-spacing: -.04em;
     margin: 0;
   }
-  .holding p {
+  .holding > p {
     font-size: 1.15rem;
     line-height: 1.55;
     color: var(--ink-soft);
     margin: 0;
-    max-width: 26rem;
   }
+  .holding__rule { height: 1px; background: var(--rule); margin-block: .5rem; }
+
+  /* Ideas panel */
+  .ideas {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--signal);
+    border-radius: 3px;
+    box-shadow: var(--shadow-card);
+    padding: 1.4rem 1.5rem 1.5rem;
+    margin-block: .75rem;
+  }
+  .ideas h2 {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 400;
+    margin: 0 0 .35rem;
+  }
+  .ideas__lede {
+    font-size: .98rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 0 1.1rem;
+  }
+  .ideas ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: .55rem;
+  }
+  .ideas li {
+    display: grid;
+    grid-template-columns: 1.35rem 1fr;
+    align-items: baseline;
+    font-size: 1rem;
+    line-height: 1.45;
+  }
+  .ideas li::before {
+    content: "→";
+    color: var(--signal);
+    font-family: var(--mono);
+    font-size: .8rem;
+  }
+  .ideas__foot {
+    margin: 1.2rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px dotted var(--rule);
+    font-size: .93rem;
+    line-height: 1.55;
+    color: var(--ink-faint);
+  }
+
   .holding__links {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    margin-top: .5rem;
+    margin-top: .25rem;
     font-family: var(--mono);
     font-size: .8rem;
     letter-spacing: .03em;
@@ -65,10 +120,34 @@
     transition: color .15s;
   }
   .holding__links a:hover { color: var(--signal); }
-  .holding__rule { height: 1px; background: var(--rule); margin-block: .5rem; }
+
+  /* Bottom blurb */
+  .blurb {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .blurb strong { color: var(--ink); font-weight: 600; }
+  .blurb a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--signal);
+    text-underline-offset: .18em;
+    text-decoration-thickness: 1.5px;
+  }
+  .blurb a:hover { color: var(--signal); }
 </style>
 </head>
 <body>
+
+<button class="theme" type="button" aria-label="Switch between light and dark">
+  <span class="theme__dot" aria-hidden="true"></span>
+  <span class="theme__off">Light</span>
+  <span class="theme__on">Dark</span>
+</button>
 
 <main class="holding">
   <p class="holding__mark">tobinchang.com</p>
@@ -82,10 +161,44 @@
     and it's Tobin's to build.
   </p>
 
+  <section class="ideas">
+    <h2>Ideas for this page</h2>
+    <p class="ideas__lede">
+      No wrong answers here. Pick one that sounds fun and start there — you can
+      always change it later, and probably will.
+    </p>
+    <ul>
+      <li>What you're into right now, and why</li>
+      <li>Photos you've taken</li>
+      <li>Reviews — games, films, albums, places you've eaten</li>
+      <li>A running list of things you're learning</li>
+      <li>Stats, highlights, or write-ups from your season</li>
+      <li>Short writing, or a proper blog if you've got things to say</li>
+      <li>Projects you've built, with pictures</li>
+      <li>Books you've read this year</li>
+      <li>Your current playlist, swapped out every month</li>
+      <li>A "now" page — literally just what you're up to lately</li>
+    </ul>
+    <p class="ideas__foot">
+      A personal site doesn't have to be impressive. It has to be yours. The
+      strange, specific ones are always better than the polished ones.
+    </p>
+  </section>
+
   <div class="holding__links">
     <a href="/howto/">Read the operator's manual →</a>
   </div>
+
+  <p class="blurb">
+    <strong>Want to build something here?</strong> Everything you need is in the
+    <a href="/howto/">operator's manual</a> — how to set it up, how to make a page,
+    and a pile of prompts you can copy. And if you get stuck at any point, or you
+    just want a hand getting started, <strong>ask Uncle Jimmy</strong>. That's
+    what he's there for.
+  </p>
 </main>
+
+<script src="/assets/theme.js"></script>
 
 </body>
 </html>
