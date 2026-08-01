@@ -153,10 +153,13 @@ img { max-width: 100%; height: auto; }
 
 /* --- Theme toggle -------------------------------------------------------- */
 
-.theme {
+/* Two matching pills pinned to the top: home on the left, theme on the right.
+   Both stay put while you scroll, because the manual is long and you shouldn't
+   have to scroll to the bottom to get out of it. */
+.theme,
+.home {
   position: fixed;
   top: 1rem;
-  right: 1rem;
   z-index: 50;
   display: inline-flex;
   align-items: center;
@@ -171,14 +174,28 @@ img { max-width: 100%; height: auto; }
   letter-spacing: .12em;
   text-transform: uppercase;
   cursor: pointer;
+  text-decoration: none;
   box-shadow: var(--shadow-card);
   transition: color .15s, border-color .15s;
 }
 
+.theme { right: 1rem; }
+.home  { left: 1rem; }
+
 .theme:hover,
-.theme:focus-visible {
+.theme:focus-visible,
+.home:hover,
+.home:focus-visible {
   color: var(--signal);
   border-color: var(--signal);
+}
+
+/* The domain name is the useful part; drop it on small screens rather than
+   letting two pills crowd the top of a phone. */
+.home__full { display: none; }
+
+@media (min-width: 30rem) {
+  .home__full { display: inline; }
 }
 
 .theme__dot {
@@ -200,7 +217,7 @@ img { max-width: 100%; height: auto; }
   :root:not([data-theme="light"]) .theme__off { display: none; }
 }
 
-@media print { .theme { display: none; } }
+@media print { .theme, .home { display: none; } }
 
 /* --- 4. Masthead --------------------------------------------------------- */
 
