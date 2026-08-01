@@ -103,6 +103,56 @@
     color: var(--ink-faint);
   }
 
+  /* Family links */
+  .family { margin-block: .75rem; }
+  .family h2 {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 400;
+    margin: 0 0 .25rem;
+  }
+  .family ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .family li { border-bottom: 1px dotted var(--rule); }
+  .family a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: .1rem 1rem;
+    padding: .85rem 0;
+    text-decoration: none;
+    color: var(--ink);
+    transition: color .15s;
+  }
+  .family a:hover { color: var(--signal); }
+  .family__name {
+    grid-column: 1;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: -.01em;
+  }
+  .family__rel {
+    grid-column: 1;
+    font-size: .95rem;
+    color: var(--ink-faint);
+  }
+  .family__url {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .04em;
+    color: var(--signal);
+  }
+
   .holding__links {
     display: flex;
     flex-wrap: wrap;
@@ -183,6 +233,26 @@
       A personal site doesn't have to be impressive. It has to be yours. The
       strange, specific ones are always better than the polished ones.
     </p>
+  </section>
+
+  <section class="family">
+    <h2>Elsewhere in the family</h2>
+    <ul>
+      <li>
+        <a href="https://jarrenchang.com">
+          <span class="family__name">Jarren Chang</span>
+          <span class="family__rel">my brother</span>
+          <span class="family__url">jarrenchang.com →</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://rhyschang.com">
+          <span class="family__name">Rhys Chang</span>
+          <span class="family__rel">my cousin</span>
+          <span class="family__url">rhyschang.com →</span>
+        </a>
+      </li>
+    </ul>
   </section>
 
   <div class="holding__links">
